@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "310384479578",
+    "project_id": "dealbazaar-e1b4e",
+    "storage_bucket": "dealbazaar-e1b4e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:310384479578:android:7b8b3f564e4bb542123763",
+        "android_client_info": {
+          "package_name": "com.app.deal_bazaar"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "310384479578-331tks3vvlrht9pkcpq1qk13pfbnlgrg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.app.deal_bazaar",
+            "certificate_hash": "d4722a21511b2094f06c441e0010b5f3833ae777"
+          }
+        },
+        {
+          "client_id": "310384479578-9c86vemi2rcnsvgd0jvt1jsa9pl0hkg5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDpvuebu8bQQh_U4DHp8r6QMDwKGBNCquo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "310384479578-9c86vemi2rcnsvgd0jvt1jsa9pl0hkg5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

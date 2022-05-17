@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>310384479578-eo80fo6akncmhrkofbtgc2t3fff0j0ak.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.310384479578-eo80fo6akncmhrkofbtgc2t3fff0j0ak</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>310384479578-331tks3vvlrht9pkcpq1qk13pfbnlgrg.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBL3GqXbtHzo6iTq17tiRlAArAZMGIznFE</string>
+	<key>GCM_SENDER_ID</key>
+	<string>310384479578</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.dealBazaar</string>
+	<key>PROJECT_ID</key>
+	<string>dealbazaar-e1b4e</string>
+	<key>STORAGE_BUCKET</key>
+	<string>dealbazaar-e1b4e.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:310384479578:ios:3c4f98f1b55c27e0123763</string>
+</dict>
+</plist>
