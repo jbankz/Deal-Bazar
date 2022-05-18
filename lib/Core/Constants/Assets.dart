@@ -38,8 +38,5 @@ const List<String> brandImageAddresses = [
 
 List<Widget> imageSliders = [
   Image.asset('assets/images/CarouselSliderImage1.png'),
-  Image.asset('assets/images/CarouselSliderImage1.png'),
-  Image.asset('assets/images/CarouselSliderImage1.png'),
-  Image.asset('assets/images/CarouselSliderImage1.png'),
-  Image.asset('assets/images/CarouselSliderImage1.png'),
+  Image.asset('assets/images/CarouselSliderImage1.png')
 ];

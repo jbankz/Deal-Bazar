@@ -7,7 +7,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../shared/appbar.dart';
+import '../../shared/textview.dart';
 import '../BrandPage/BrandPage.dart';
+import '../NotificationScreen/NotificationScreen.dart';
 
 class ChooseAddressScreen extends StatefulWidget {
   @override
@@ -48,79 +51,32 @@ class _ChooseAddressScreenState extends State<ChooseAddressScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: BottomNavGlobalHomeButtom(),
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(100.h), // Set this height
-        child: Container(
-          width: 325.w,
-          height: 100.h,
-          padding: EdgeInsets.symmetric(horizontal: 20.w),
-          decoration: BoxDecoration(
-            color: yellowColor,
-            borderRadius: BorderRadius.only(
-              bottomLeft: Radius.circular(30.r),
-              bottomRight: Radius.circular(30.r),
-            ),
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              GestureDetector(
-                onTap: () {
-                  Get.back();
-                },
-                child: Container(
-                  width: 26.w,
-                  height: 26.w,
-                  padding: EdgeInsets.only(left: 7.w),
-                  decoration: BoxDecoration(
-                    color: whiteColor,
-                    borderRadius: BorderRadius.circular(5.r),
-                    boxShadow: [
-                      BoxShadow(
-                        color: greyColor.withOpacity(0.5),
-                        blurRadius: 5,
-                        spreadRadius: 0.1,
-                        offset: Offset(0, 4),
-                      )
-                    ],
-                  ),
-                  child: Center(
-                    child: Icon(
-                      Icons.arrow_back_ios,
-                    ),
-                  ),
-                ),
-              ),
-              Text(
-                'Shipping Details',
-                style: GoogleFonts.roboto(
-                  fontSize: 15.sp,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-              Icon(
-                Icons.notifications,
-                size: 26.sp,
-                color: Colors.transparent,
-              ),
-            ],
-          ),
-        ),
-      ),
+      appBar: defaultAppBar(context,
+          leadingWidget: GestureDetector(
+              onTap: () => Get.back(), child: Icon(Icons.clear)),
+          titleWidget: TextView(
+              text: 'Shipping Details',
+              fontSize: 20,
+              fontWeight: FontWeight.w600),
+          menuWidget: GestureDetector(
+            onTap: () {
+              Get.to(() => NotificationScreen());
+            },
+            child: Icon(Icons.notifications, size: 24.sp),
+          )),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 10.w),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(height: 20.h),
-            Text(
-              'Current Shipping Address',
-              style: GoogleFonts.roboto(
-                fontSize: 10.sp,
-                color: blackColor.withOpacity(0.5),
-              ),
+            TextView(
+              text: 'Current Shipping Address',
+              fontSize: 14,
+              textAlign: TextAlign.left,
+              fontWeight: FontWeight.w500,
             ),
+            SizedBox(height: 16.h),
             ShippingDetailsCardWidget(
               address: address,
               address2: address2,
@@ -164,9 +120,9 @@ class _ShippingDetailsCardWidgetState extends State<ShippingDetailsCardWidget> {
   bool address1 = false;
   @override
   Widget build(BuildContext context) {
+    Size? _size = MediaQuery.of(context).size;
     return Container(
-      width: 302.w,
-      height: 130.h,
+      width: _size.width.w,
       padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10.r),
@@ -181,14 +137,17 @@ class _ShippingDetailsCardWidgetState extends State<ShippingDetailsCardWidget> {
         ],
       ),
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
           Row(
             children: [
-              Text(
-                'My Shipping Address',
-                style: GoogleFonts.roboto(
-                  fontSize: 16.sp,
-                  fontWeight: FontWeight.w500,
+              Expanded(
+                child: Text(
+                  'My Shipping Address',
+                  style: GoogleFonts.roboto(
+                    fontSize: 16.sp,
+                    fontWeight: FontWeight.w500,
+                  ),
                 ),
               ),
               Spacer(),
@@ -223,7 +182,7 @@ class _ShippingDetailsCardWidgetState extends State<ShippingDetailsCardWidget> {
               ),
             ],
           ),
-          Spacer(),
+          SizedBox(height: 16.h),
           Row(
             children: [
               Container(
@@ -247,10 +206,9 @@ class _ShippingDetailsCardWidgetState extends State<ShippingDetailsCardWidget> {
                 ),
               ),
               SizedBox(width: 10.w),
-              SizedBox(
-                width: 170.w,
-                child:
-                    Text('${widget.name}, #${widget.phon}\n${widget.address}'),
+              Expanded(
+                child: TextView(
+                    text: '${widget.name}, #${widget.phon}\n${widget.address}'),
               ),
             ],
           ),

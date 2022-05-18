@@ -15,6 +15,8 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../Core/services/database/db_service.dart';
+import '../../shared/appbar.dart';
+import '../../shared/textview.dart';
 import '../BrandPage/BrandPage.dart';
 import '../CartScreen/loader_widget.dart';
 
@@ -44,57 +46,17 @@ class _MyWishListScreenState extends State<MyWishListScreen> {
   Widget build(BuildContext context) {
     final um = context.watch<UserViewModel>();
     return Scaffold(
-      bottomNavigationBar: BottomNavGlobalHomeButtom(),
-      drawer: CustomDrawer(),
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(100.h), // Set this height
-        child: Container(
-          width: 325.w,
-          height: 100.h,
-          padding: EdgeInsets.symmetric(horizontal: 20.w),
-          decoration: BoxDecoration(
-            color: yellowColor,
-            borderRadius: BorderRadius.only(
-              bottomLeft: Radius.circular(30.r),
-              bottomRight: Radius.circular(30.r),
-            ),
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Builder(
-                builder: (context) {
-                  return GestureDetector(
-                    onTap: () {
-                      Scaffold.of(context).openDrawer();
-                    },
-                    child: Image.asset(
-                      mainPageMenuIcon,
-                      scale: 3,
-                    ),
-                  );
-                },
-              ),
-              Text(
-                'My Wishlist',
-                style: GoogleFonts.roboto(
-                  fontSize: 15.sp,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-              GestureDetector(
-                onTap: () {
-                  Get.to(() => NotificationScreen());
-                },
-                child: Icon(
-                  Icons.notifications,
-                  size: 30.sp,
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
+      appBar: defaultAppBar(context,
+          leadingWidget: GestureDetector(
+              onTap: () => Get.back(), child: Icon(Icons.clear)),
+          titleWidget: TextView(
+              text: 'My Wishlist', fontSize: 20, fontWeight: FontWeight.w600),
+          menuWidget: GestureDetector(
+            onTap: () {
+              Get.to(() => NotificationScreen());
+            },
+            child: Icon(Icons.notifications, size: 24.sp),
+          )),
       body: StreamBuilder<List<ProductModel>>(
           stream: DbService().wishlistProducts(dbId: id),
           initialData: const [],
