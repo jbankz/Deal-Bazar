@@ -22,6 +22,7 @@ class CustomDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size? _size = MediaQuery.of(context).size;
     return Drawer(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(50.r),
@@ -29,7 +30,7 @@ class CustomDrawer extends StatelessWidget {
       child: Column(
         children: [
           Container(
-            width: 281.w,
+            width: _size.width.w,
             height: 173.h,
             decoration: BoxDecoration(
               color: yellowColor,
@@ -66,6 +67,7 @@ class CustomDrawer extends StatelessWidget {
           Expanded(
             child: Container(
               color: blackColor,
+              width: _size.width.w,
               child: Column(
                 children: [
                   SizedBox(height: 44.h),

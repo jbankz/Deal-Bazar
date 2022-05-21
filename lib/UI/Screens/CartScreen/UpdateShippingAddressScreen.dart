@@ -9,6 +9,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../../../Core/services/local/local_db.dart';
 import '../../shared/appbar.dart';
+import '../../shared/custom_textview.dart';
 import '../../shared/textview.dart';
 import '../BrandPage/BrandPage.dart';
 import 'package:country_list_pick/country_list_pick.dart';
@@ -218,85 +219,6 @@ class _UpdateShippingAddressState extends State<UpdateShippingAddress> {
             SizedBox(height: 10.h),
           ],
         ),
-      ),
-    );
-  }
-}
-
-class CustomTextFieldWithLeadingIcon extends StatelessWidget {
-  final IconData leadingIcon;
-  final String hint;
-  final Color bcColor;
-  final String? Function(String?)? validatorFunction;
-  final TextEditingController controller;
-  final bool obsecure;
-
-  CustomTextFieldWithLeadingIcon(
-      {required this.hint,
-      required this.obsecure,
-      required this.controller,
-      this.validatorFunction,
-      required this.leadingIcon,
-      required this.bcColor});
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: 295.w,
-      height: 45.h,
-      padding: EdgeInsets.symmetric(horizontal: 10.w),
-      decoration: BoxDecoration(
-        color: bcColor,
-        border: Border.all(color: blackColor),
-        borderRadius: BorderRadius.circular(5.r),
-      ),
-      child: Row(
-        children: [
-          Container(
-            width: 24.w,
-            height: 24.w,
-            decoration: BoxDecoration(
-              color: whiteColor,
-              borderRadius: BorderRadius.circular(5.r),
-              boxShadow: [
-                BoxShadow(
-                  color: greyColor.withOpacity(0.5),
-                  blurRadius: 5,
-                  spreadRadius: 0.1,
-                  offset: Offset(0, 4),
-                ),
-              ],
-            ),
-            child: Center(
-              child: Icon(
-                leadingIcon,
-                color: greyColor,
-              ),
-            ),
-          ),
-          SizedBox(width: 20.w),
-          SizedBox(
-            width: 200.w,
-            child: TextFormField(
-              obscureText: obsecure,
-              controller: controller,
-              validator: validatorFunction,
-              cursorColor: blackColor,
-              style: GoogleFonts.roboto(
-                fontSize: 16.sp,
-                fontWeight: FontWeight.w400,
-              ),
-              decoration: InputDecoration(
-                hintText: hint,
-                hintStyle: GoogleFonts.roboto(
-                  fontSize: 16.sp,
-                  fontWeight: FontWeight.w400,
-                  color: greyColor,
-                ),
-                border: InputBorder.none,
-              ),
-            ),
-          )
-        ],
       ),
     );
   }

@@ -8,12 +8,12 @@ import 'package:deal_bazaar/UI/Screens/CartScreen/checkout.dart';
 import 'package:deal_bazaar/UI/base_view/base_view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:deal_bazaar/core/enums/process_status.dart';
 import 'package:deal_bazaar/core/services/database/db_service.dart';
 import 'package:deal_bazaar/core/services/shipping/shipping_calculation.dart';
 import 'package:deal_bazaar/core/services/web/web_scrap_service.dart';
 
 import 'package:http/http.dart' as http;
+import '../../core/enums/process_status.dart';
 import '../../Core/utils/error_dialog.dart';
 
 import '../Screens/roots/root.dart';

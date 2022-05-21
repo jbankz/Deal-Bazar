@@ -1,7 +1,10 @@
 import 'package:flutter/foundation.dart';
-import 'package:deal_bazaar/core/enums/process_status.dart';
+// import 'package:deal_bazaar/core/enums/process_status.dart';
 import 'package:deal_bazaar/core/services/authorization/auth_service.dart';
 import 'package:phonenumbers_core/core.dart';
+
+import '../../../core/enums/process_status.dart';
+
 
 class OtpViewModel with ChangeNotifier {
   bool _loading = false;
@@ -35,9 +38,9 @@ class OtpViewModel with ChangeNotifier {
     });
   }
 
-  Future<ProcessStatus> finalCallToFirebase(
-          {required String verificationId, required String otp}) async =>
-      await AuthService().verifyOtp(verificationId: verificationId, otp: otp);
+  // Future<ProcessStatus> finalCallToFirebase(
+  //         {required String verificationId, required String otp}) async =>
+  //     await AuthService().verifyOtp(verificationId: verificationId, otp: otp);
   //     .then((value) {
   //   if (value == ProcessStatus.compeleted) {
   //     // return ProcessStatus.compeleted;

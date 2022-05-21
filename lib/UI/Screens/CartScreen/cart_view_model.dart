@@ -11,13 +11,13 @@ import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:intl/intl.dart';
-import 'package:deal_bazaar/Core/enums/process_status.dart';
 import 'package:deal_bazaar/core/services/database/db_service.dart';
 import 'package:deal_bazaar/core/services/shipping/shipping_calculation.dart';
 import 'package:deal_bazaar/marka_imports.dart';
 
 import 'package:random_string_generator/random_string_generator.dart';
 
+import '../../../core/enums/process_status.dart';
 import 'dialog_button_2.dart';
 
 class CartViewModel with ChangeNotifier {
