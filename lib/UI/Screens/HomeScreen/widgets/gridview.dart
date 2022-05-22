@@ -40,6 +40,14 @@ class HomeScreenGridViewWidget extends StatelessWidget {
                     url: 'https://www.adidas.com/us',
                   ),
                 );
+                /*  Get.to(
+                  () => GeneralWebView(
+                    url: 'https://www.adidas.com/us',
+                    price: 100,
+                    webTitle: 'adidas',
+                    handleGetPriceFunction: () {},
+                  ),
+                ); */
               }
               if (index == 2) {
                 Get.to(
