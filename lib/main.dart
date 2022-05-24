@@ -66,7 +66,7 @@ class _DealBazaarState extends State<DealBazaar> {
     Timer(
       Duration(seconds: 2),
       () => Get.offAll(
-        () => OnBoardingScreens(),
+        () => HomeScreen(),
         transition: Transition.fadeIn,
         duration: Duration(milliseconds: 500),
       ),

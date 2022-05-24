@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../../Core/Constants/Colors.dart';
-import '../../../webview/webview_adidas.dart';
-import '../../../webview/webview_amazon.dart';
-import '../../../webview/webview_carter.dart';
-import '../../../webview/webview_michaelKors.dart';
-import '../../../webview/webview_nike.dart';
-import '../../../webview/webview_saks.dart';
-import '../../../webview/webview_steveMadden.dart';
+import '../../../webview/stores/webview_adidas.dart';
+import '../../../webview/stores/webview_amazon.dart';
+import '../../../webview/stores/webview_carter.dart';
+import '../../../webview/stores/webview_michaelKors.dart';
+import '../../../webview/stores/webview_nike.dart';
+import '../../../webview/stores/webview_salks.dart';
+import '../../../webview/stores/webview_steveMadden.dart';
 
 class HomeScreenSearchWidget extends StatelessWidget {
   TextEditingController controller = TextEditingController();

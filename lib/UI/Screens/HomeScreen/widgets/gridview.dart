@@ -3,17 +3,16 @@ import 'package:deal_bazaar/marka_imports.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_grid/responsive_grid.dart';
 
-import '../../../../Core/Constants/Assets.dart';
 import '../../../Model/store.dart';
-import '../../../webview/webview_adidas.dart';
-import '../../../webview/webview_amazon.dart';
-import '../../../webview/webview_carter.dart';
-import '../../../webview/webview_macys.dart';
-import '../../../webview/webview_michaelKors.dart';
-import '../../../webview/webview_nike.dart';
-import '../../../webview/webview_nordstorm.dart';
-import '../../../webview/webview_saks.dart';
-import '../../../webview/webview_steveMadden.dart';
+import '../../../webview/stores/webview_adidas.dart';
+import '../../../webview/stores/webview_amazon.dart';
+import '../../../webview/stores/webview_carter.dart';
+import '../../../webview/stores/webview_macys.dart';
+import '../../../webview/stores/webview_michaelKors.dart';
+import '../../../webview/stores/webview_nike.dart';
+import '../../../webview/stores/webview_nordstorm.dart';
+import '../../../webview/stores/webview_salks.dart';
+import '../../../webview/stores/webview_steveMadden.dart';
 
 class HomeScreenGridViewWidget extends StatelessWidget {
   @override
@@ -40,14 +39,6 @@ class HomeScreenGridViewWidget extends StatelessWidget {
                     url: 'https://www.adidas.com/us',
                   ),
                 );
-                /*  Get.to(
-                  () => GeneralWebView(
-                    url: 'https://www.adidas.com/us',
-                    price: 100,
-                    webTitle: 'adidas',
-                    handleGetPriceFunction: () {},
-                  ),
-                ); */
               }
               if (index == 2) {
                 Get.to(
@@ -58,7 +49,7 @@ class HomeScreenGridViewWidget extends StatelessWidget {
               }
               if (index == 3) {
                 Get.to(
-                  () => WebViewMacys(),
+                  () => WebViewMacys(url: ''),
                 );
               }
               if (index == 4) {
