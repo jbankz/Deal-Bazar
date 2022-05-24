@@ -2,12 +2,14 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:http/http.dart' as http;
-import 'package:deal_bazaar/core/enums/process_status.dart';
 import 'package:deal_bazaar/core/others/response_status.dart';
 import 'package:deal_bazaar/core/services/web/custom_exception.dart';
 import 'package:deal_bazaar/UI/base_view/base_view.dart';
 import 'package:html/parser.dart' as htmlparser;
 import 'package:html/dom.dart' as dom;
+
+import '../../../core/enums/process_status.dart';
+
 
 class WebScrapService {
   static const _path =

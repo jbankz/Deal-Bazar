@@ -1,9 +1,11 @@
+import 'package:deal_bazaar/Core/Constants/logger.dart';
 import 'package:deal_bazaar/UI/Screens/HomeScreen/HomeScreen.dart';
 import 'package:flutter/foundation.dart';
-import 'package:deal_bazaar/core/enums/process_status.dart';
 import 'package:deal_bazaar/core/services/authorization/auth_service.dart';
 import 'package:deal_bazaar/core/services/local/local_db.dart';
 
+import '../../../core/enums/process_status.dart';
+import '../../../Core/utils/messages.dart';
 import '../../../marka_imports.dart';
 
 class SignInViewModel with ChangeNotifier {
@@ -36,14 +38,11 @@ class SignInViewModel with ChangeNotifier {
         });
       } else if (value.status == ProcessStatus.failed) {
         final response = value.value['response'];
-        Get.snackbar('Sign In Error', '$response',
-            backgroundColor: MarkaColors.gold,
-            colorText: MarkaColors.white,
-            duration: const Duration(seconds: 10),
-            snackPosition: SnackPosition.BOTTOM);
-
-        setState(false);
+        showSnack('Error', response ?? '', isError: true);
       }
+    }).catchError((e) {
+      showSnack('Error', e.errorMessage ?? '', isError: true);
     });
+    setState(false);
   }
 }

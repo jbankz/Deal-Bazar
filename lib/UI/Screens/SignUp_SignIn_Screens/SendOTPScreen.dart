@@ -7,6 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../shared/custom_textview.dart';
+
 class SendOTPScreen extends StatelessWidget {
   final String phonNumber;
   final String varificationId;

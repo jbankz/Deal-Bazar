@@ -1,14 +1,17 @@
+import 'package:deal_bazaar/Core/Constants/logger.dart';
 import 'package:deal_bazaar/Core/services/local/local_db.dart';
 import 'package:deal_bazaar/UI/Screens/SignUp_SignIn_Screens/SendOTPScreen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
-import 'package:deal_bazaar/core/enums/process_status.dart';
 import 'package:deal_bazaar/core/models/user_model.dart';
 import 'package:deal_bazaar/core/others/response_status.dart';
 import 'package:deal_bazaar/core/services/database/db_service.dart';
 
 import '../../../UI/Screens/SignUp_SignIn_Screens/OTPScreen.dart';
+import '../../../core/enums/process_status.dart';
 import '../../../marka_imports.dart';
+import '../error/firebase_error_handler.dart';
+import '../error/firebase_exception.dart';
 
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -101,48 +104,22 @@ class AuthService {
   Future<ResponseStatus> registerUser({required UserModel ourUser}) async {
     ResponseStatus status =
         ResponseStatus(status: ProcessStatus.loading, value: {});
-    print("this is email");
-    print(ourUser.emailAddress);
     try {
-      await _auth
-          .createUserWithEmailAndPassword(
-              email: ourUser.emailAddress.toString().trim(),
-              password: ourUser.password.toString())
-          .then((user) async {
-        ourUser.dbId = user.user!.uid;
+      final _newUser = await _auth.createUserWithEmailAndPassword(
+          email: ourUser.emailAddress.toString().trim(),
+          password: ourUser.password.toString());
 
-        await DbService().addUserData(user: ourUser).then((value) {
-          if (value.status == ProcessStatus.compeleted) {
-            status.status = ProcessStatus.compeleted;
-            status.value = {
-              'dbId': user.user!.uid,
-              'response': 'Success',
-            };
-          } else if (value.status == ProcessStatus.failed) {
-            status.status = ProcessStatus.failed;
-            log('Im Here and Catched Db Add Function Error');
+      await DbService().addUserData(user: ourUser);
 
-            status.value = {
-              'response': value.value['error'],
-            };
-          }
-        });
-      });
-    } on PlatformException catch (e) {
-      log('Im Here and Catched Platform Exception');
-
-      status.status = ProcessStatus.failed;
-
+      status.status = ProcessStatus.compeleted;
       status.value = {
-        'response': e.message,
+        'dbId': _newUser.user?.uid,
+        'response': 'Success',
       };
-    } on FirebaseAuthException catch (k) {
-      log('Im Here and Catched Firebase Exception');
-      status.status = ProcessStatus.failed;
-
-      status.value = {
-        'response': k.message,
-      };
+    } on FirebaseAuthException catch (authError) {
+      throw CustomAuthException(authError.code, authError.message!);
+    } catch (e) {
+      throw CustomException(errorMessage: "Unknown Error");
     }
     return status;
   }
@@ -250,21 +227,10 @@ class AuthService {
           'response': 'Success',
         };
       });
-    } on PlatformException catch (e) {
-      log('Im Here and Catched Platform Exception: $e');
-
-      status.status = ProcessStatus.failed;
-
-      status.value = {
-        'response': e.message,
-      };
-    } on FirebaseAuthException catch (k) {
-      log('Im Here and Catched Firebase Exception: $k');
-      status.status = ProcessStatus.failed;
-
-      status.value = {
-        'response': k.message,
-      };
+    } on FirebaseAuthException catch (authError) {
+      throw CustomAuthException(authError.code, authError.message!);
+    } catch (e) {
+      throw CustomException(errorMessage: "Unknown Error");
     }
     return status;
   }

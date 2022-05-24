@@ -11,8 +11,8 @@ import 'package:deal_bazaar/UI/Screens/CartScreen/loader_widget.dart';
 import 'package:deal_bazaar/UI/Screens/Drawer/DrawerScreen.dart';
 import 'package:deal_bazaar/UI/Screens/NotificationScreen/NotificationScreen.dart';
 import 'package:deal_bazaar/UI/Screens/user_viewmodel/user_viewmodel.dart';
-
 import 'package:deal_bazaar/UI/base_view/base_view.dart';
+import 'package:deal_bazaar/UI/shared/textview.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -20,6 +20,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../Core/Constants/Colors.dart';
+import '../../shared/appbar.dart';
 
 class MyCartScreen extends StatefulWidget {
   @override
@@ -50,56 +51,17 @@ class _MyCartScreenState extends State<MyCartScreen> {
     final um = context.watch<UserViewModel>();
     return Scaffold(
       bottomNavigationBar: BottomNavGlobalHomeButtom(),
-      drawer: CustomDrawer(),
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(100.h), // Set this height
-        child: Container(
-          width: 325.w,
-          height: 100.h,
-          padding: EdgeInsets.symmetric(horizontal: 20.w),
-          decoration: BoxDecoration(
-            color: yellowColor,
-            borderRadius: BorderRadius.only(
-              bottomLeft: Radius.circular(30.r),
-              bottomRight: Radius.circular(30.r),
-            ),
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Builder(
-                builder: (context) {
-                  return GestureDetector(
-                    onTap: () {
-                      Scaffold.of(context).openDrawer();
-                    },
-                    child: Image.asset(
-                      mainPageMenuIcon,
-                      scale: 3,
-                    ),
-                  );
-                },
-              ),
-              Text(
-                'My Cart',
-                style: GoogleFonts.roboto(
-                  fontSize: 15.sp,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-              GestureDetector(
-                onTap: () {
-                  Get.to(() => NotificationScreen());
-                },
-                child: Icon(
-                  Icons.notifications,
-                  size: 30.sp,
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
+      appBar: defaultAppBar(context,
+          leadingWidget: GestureDetector(
+              onTap: () => Get.back(), child: Icon(Icons.clear)),
+          titleWidget: TextView(
+              text: 'My cart', fontSize: 20, fontWeight: FontWeight.w600),
+          menuWidget: GestureDetector(
+            onTap: () {
+              Get.to(() => NotificationScreen());
+            },
+            child: Icon(Icons.notifications, size: 24.sp),
+          )),
       body: SingleChildScrollView(
         child: Column(
           children: [

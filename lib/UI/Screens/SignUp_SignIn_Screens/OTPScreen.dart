@@ -1,22 +1,17 @@
 import 'package:deal_bazaar/Core/Constants/Assets.dart';
 import 'package:deal_bazaar/Core/Constants/Colors.dart';
 import 'package:deal_bazaar/Core/utils/dialog_button.dart';
-import 'package:deal_bazaar/UI/Screens/CartScreen/CheckoutScreen.dart';
 import 'package:deal_bazaar/UI/Screens/HomeScreen/HomeScreen.dart';
 import 'package:deal_bazaar/UI/Screens/SignUp_SignIn_Screens/otp_view_model.dart';
 import 'package:deal_bazaar/UI/Screens/SignUp_SignIn_Screens/sign_up_viewmodel.dart';
 import 'package:deal_bazaar/UI/base_view/base_view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/src/material/dialog.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:otp_text_field/otp_text_field.dart';
-import 'package:otp_text_field/style.dart';
 import 'package:pinput/pin_put/pin_put.dart';
-
-import '../../../Core/enums/process_status.dart';
-import 'package:flutter/src/material/dialog.dart';
 
 class OTPScreen extends StatefulWidget {
   final String userNumber;

@@ -8,8 +8,13 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../Core/services/local/local_db.dart';
+import '../../shared/appbar.dart';
+import '../../shared/custom_textview.dart';
+import '../../shared/textview.dart';
 import '../BrandPage/BrandPage.dart';
 import 'package:country_list_pick/country_list_pick.dart';
+
+import '../NotificationScreen/NotificationScreen.dart';
 
 class UpdateShippingAddress extends StatefulWidget {
   final String name;
@@ -74,71 +79,24 @@ class _UpdateShippingAddressState extends State<UpdateShippingAddress> {
 
   @override
   Widget build(BuildContext context) {
+    Size? _size = MediaQuery.of(context).size;
     return Scaffold(
-      bottomNavigationBar: BottomNavGlobalHomeButtom(),
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(100.h), // Set this height
-        child: Container(
-          width: 325.w,
-          height: 100.h,
-          padding: EdgeInsets.symmetric(horizontal: 20.w),
-          decoration: BoxDecoration(
-            color: yellowColor,
-            borderRadius: BorderRadius.only(
-              bottomLeft: Radius.circular(30.r),
-              bottomRight: Radius.circular(30.r),
-            ),
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              GestureDetector(
-                onTap: () {
-                  Get.back();
-                },
-                child: Container(
-                  width: 26.w,
-                  height: 26.w,
-                  padding: EdgeInsets.only(left: 7.w),
-                  decoration: BoxDecoration(
-                    color: whiteColor,
-                    borderRadius: BorderRadius.circular(5.r),
-                    boxShadow: [
-                      BoxShadow(
-                        color: greyColor.withOpacity(0.5),
-                        blurRadius: 5,
-                        spreadRadius: 0.1,
-                        offset: Offset(0, 4),
-                      )
-                    ],
-                  ),
-                  child: Center(
-                    child: Icon(
-                      Icons.arrow_back_ios,
-                    ),
-                  ),
-                ),
-              ),
-              Text(
-                'Shipping Details',
-                style: GoogleFonts.roboto(
-                  fontSize: 15.sp,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-              Icon(
-                Icons.notifications,
-                size: 26.sp,
-                color: Colors.transparent,
-              ),
-            ],
-          ),
-        ),
-      ),
-      body: Container(
-        width: 1.sw,
-        height: MediaQuery.of(context).size.height + 100,
-        child: Column(
+      appBar: defaultAppBar(context,
+          leadingWidget: GestureDetector(
+              onTap: () => Get.back(), child: Icon(Icons.clear)),
+          titleWidget: TextView(
+              text: 'Shipping Details',
+              fontSize: 20,
+              fontWeight: FontWeight.w600),
+          menuWidget: GestureDetector(
+            onTap: () {
+              Get.to(() => NotificationScreen());
+            },
+            child: Icon(Icons.notifications, size: 24.sp),
+          )),
+      body: Padding(
+        padding: EdgeInsets.all(16.w),
+        child: ListView(
           children: [
             SizedBox(height: 20.h),
             CustomTextFieldWithLeadingIcon(
@@ -182,7 +140,7 @@ class _UpdateShippingAddressState extends State<UpdateShippingAddress> {
             ),
             SizedBox(height: 16.h),
             Container(
-              width: 290,
+              width: _size.width,
               decoration: BoxDecoration(
                 color: Colors.yellow,
                 border: Border.all(color: blackColor),
@@ -204,16 +162,16 @@ class _UpdateShippingAddressState extends State<UpdateShippingAddress> {
               leadingIcon: Icons.maps_home_work_outlined,
               bcColor: yellowColor,
             ),
-            Spacer(),
+            SizedBox(height: 16.h),
             GestureDetector(
               onTap: () {
                 Get.back();
               },
               child: Container(
-                width: 276.w,
-                height: 44.h,
+                width: _size.width.w,
+                height: 48.h,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20.r),
+                  borderRadius: BorderRadius.circular(8.r),
                   color: blackColor,
                 ),
                 child: Center(
@@ -261,85 +219,6 @@ class _UpdateShippingAddressState extends State<UpdateShippingAddress> {
             SizedBox(height: 10.h),
           ],
         ),
-      ),
-    );
-  }
-}
-
-class CustomTextFieldWithLeadingIcon extends StatelessWidget {
-  final IconData leadingIcon;
-  final String hint;
-  final Color bcColor;
-  final String? Function(String?)? validatorFunction;
-  final TextEditingController controller;
-  final bool obsecure;
-
-  CustomTextFieldWithLeadingIcon(
-      {required this.hint,
-      required this.obsecure,
-      required this.controller,
-      this.validatorFunction,
-      required this.leadingIcon,
-      required this.bcColor});
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: 295.w,
-      height: 45.h,
-      padding: EdgeInsets.symmetric(horizontal: 10.w),
-      decoration: BoxDecoration(
-        color: bcColor,
-        border: Border.all(color: blackColor),
-        borderRadius: BorderRadius.circular(5.r),
-      ),
-      child: Row(
-        children: [
-          Container(
-            width: 24.w,
-            height: 24.w,
-            decoration: BoxDecoration(
-              color: whiteColor,
-              borderRadius: BorderRadius.circular(5.r),
-              boxShadow: [
-                BoxShadow(
-                  color: greyColor.withOpacity(0.5),
-                  blurRadius: 5,
-                  spreadRadius: 0.1,
-                  offset: Offset(0, 4),
-                ),
-              ],
-            ),
-            child: Center(
-              child: Icon(
-                leadingIcon,
-                color: greyColor,
-              ),
-            ),
-          ),
-          SizedBox(width: 20.w),
-          SizedBox(
-            width: 200.w,
-            child: TextFormField(
-              obscureText: obsecure,
-              controller: controller,
-              validator: validatorFunction,
-              cursorColor: blackColor,
-              style: GoogleFonts.roboto(
-                fontSize: 16.sp,
-                fontWeight: FontWeight.w400,
-              ),
-              decoration: InputDecoration(
-                hintText: hint,
-                hintStyle: GoogleFonts.roboto(
-                  fontSize: 16.sp,
-                  fontWeight: FontWeight.w400,
-                  color: greyColor,
-                ),
-                border: InputBorder.none,
-              ),
-            ),
-          )
-        ],
       ),
     );
   }

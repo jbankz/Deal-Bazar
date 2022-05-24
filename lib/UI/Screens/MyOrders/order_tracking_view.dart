@@ -13,6 +13,7 @@ class OrderTrackingView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BaseViewWidget(
       appBar: backNavigationAppBar(title: 'Order Tracking'),
+      
       avoidScrollView: false,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

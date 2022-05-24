@@ -13,6 +13,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'Core/others/important.dart';
 import 'UI/Model/DrawerModel.dart';
 import 'UI/Screens/CartScreen/cart_view_model.dart';
+import 'UI/Screens/HomeScreen/HomeScreen.dart';
 import 'UI/Screens/SignUp_SignIn_Screens/otp_view_model.dart';
 import 'UI/Screens/SignUp_SignIn_Screens/sign_in_viewmodel.dart';
 import 'UI/Screens/user_viewmodel/user_viewmodel.dart';
@@ -65,7 +66,7 @@ class _DealBazaarState extends State<DealBazaar> {
     Timer(
       Duration(seconds: 2),
       () => Get.offAll(
-        () => OnBoardingScreens(),
+        () => HomeScreen(),
         transition: Transition.fadeIn,
         duration: Duration(milliseconds: 500),
       ),
@@ -75,7 +76,7 @@ class _DealBazaarState extends State<DealBazaar> {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      designSize: Size(325, 706),
+      designSize: Size(375, 812),
       builder: () => GetMaterialApp(
         theme: ThemeData(
           scaffoldBackgroundColor: whiteColor,
